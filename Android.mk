@@ -168,7 +168,8 @@ LOCAL_MODULE := busybox_links
 LOCAL_MODULE_TAGS := optional
 
 # nc is provided by external/netcat
-BUSYBOX_EXCLUDE := nc
+# nbd-client is provided by external/nbd
+BUSYBOX_EXCLUDE := nc nbd-client
 
 BUSYBOX_LINKS := $(shell cat $(BB_PATH)/busybox-$(BUSYBOX_CONFIG).links)
 BUSYBOX_SYMLINKS := $(filter-out $(BUSYBOX_EXCLUDE),$(notdir $(BUSYBOX_LINKS)))
