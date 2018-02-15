@@ -207,6 +207,11 @@ LOCAL_UNSTRIPPED_PATH := $(PRODUCT_OUT)/symbols/utilities
 LOCAL_ADDITIONAL_DEPENDENCIES := $(busybox_prepare_full)
 LOCAL_PACK_MODULE_RELOCATIONS := false
 LOCAL_CLANG := false
+
+LOCAL_POST_INSTALL_CMD := \
+    $(hide) mkdir -p $(TARGET_ROOT_OUT_SBIN) && \
+    $(foreach t,$(BUSYBOX_SYMLINKS),ln -sf $(BUSYBOX_BINARY) $(TARGET_ROOT_OUT_SBIN)/$(t);)
+
 include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
